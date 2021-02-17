@@ -1,13 +1,16 @@
 package com.example.cipherb4;
 
-public enum  CipherFactory {
-    CEZAR("cezar");
-    CipherFactory(String cezar) {
-    }
-    public String CipheringText(String textToCipher){
-        switch (this){
-            case CEZAR:return CezarCipher.Convert(textToCipher);
+//TODO:add more ciphers
+public enum CipherFactory {
+    CAESAR, NEW;
+
+    public String CipheringText(String textToCipher) {
+        switch (this) {
+            case CAESAR:
+                return CaesarCipher.Convert(textToCipher);
+            case NEW:
+                return "NEW";
         }
-        return " 11";
+        return null;
     }
 }
