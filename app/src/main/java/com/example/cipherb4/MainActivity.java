@@ -33,9 +33,19 @@ public class MainActivity extends AppCompatActivity {
                 this,
                 R.array.cipher,
                 android.R.layout.simple_spinner_item);
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tvIN.setHint(CipherFactory.valueOf(spinner.getSelectedItem().toString().toUpperCase()).GetHint());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                tvIN.setHint(CipherFactory.CAESAR.GetHint());
+            }
+        });
         bConvert.setOnClickListener(view -> {
             tvOut.setText(CipherFactory.valueOf(
                     spinner.getSelectedItem().toString().toUpperCase())
