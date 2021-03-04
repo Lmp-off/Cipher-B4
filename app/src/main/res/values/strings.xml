@@ -1,16 +1,10 @@
 <resources>
     <string name="app_name">cipher b4</string>
     <string name="cipher_b4">CIPHER B4</string>
+    <string name="show_result">Show result</string>
     <string-array name="cipher">
         <item>Caesar</item>
         <item>Secret_Word</item>
         <item>Vigenere</item>
-        <item>№4</item>
-        <item>№4</item>
-        <item>№4</item>
-        <item>№4</item>
-        <item>№4</item>
-        <item>№4</item>
-        <item>№4</item>
     </string-array>
 </resources>

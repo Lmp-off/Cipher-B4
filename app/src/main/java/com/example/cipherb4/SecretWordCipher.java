@@ -2,10 +2,15 @@ package com.example.cipherb4;
 
 import java.util.ArrayList;
 
-public class SecretWordCipher implements Cipher {
-    private final int firstLetter = 97;
-    private final int countLetters = 25;
+public class SecretWordCipher extends Cipher {
+    private final int firstLetter;
+    private final int countLetters;
     private ArrayList<Character> arrays;
+
+    {
+        firstLetter = 97;
+        countLetters = 25;
+    }
 
     public SecretWordCipher(String word) {
         createNewAlphabet(word);
@@ -31,7 +36,7 @@ public class SecretWordCipher implements Cipher {
     }
 
     @Override
-    public String Cipher(String text) {
+    protected String Cipher(String text) {
         StringBuilder builder = new StringBuilder();
         for (char a : text.toLowerCase().replaceAll(" ", "").toCharArray()
         ) {
@@ -44,11 +49,12 @@ public class SecretWordCipher implements Cipher {
         return arrays.get(ch - firstLetter);
     }
 
-    public String decode(String text) {
+    @Override
+    protected String Decode(String text) {
         StringBuilder builder = new StringBuilder();
         for (char a : text.toLowerCase().replaceAll(" ", "").toCharArray()
         ) {
-            builder.append(decodeChar(a) + " ");
+            builder.append(decodeChar(a));
         }
         return builder.toString();
     }

@@ -8,15 +8,17 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
+//TODO:support more languages
 public class MainActivity extends AppCompatActivity {
     Button bConvert;
     TextView tvOut;
     EditText tvIN;
     Spinner spinner;
+    CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +30,13 @@ public class MainActivity extends AppCompatActivity {
         tvOut = findViewById(R.id.textViewOut);
         tvIN = findViewById(R.id.editTextTextPersonName2);
         spinner = findViewById(R.id.spinner);
+        checkBox = findViewById(R.id.checkBox);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.cipher,
                 android.R.layout.simple_spinner_item);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -46,10 +50,14 @@ public class MainActivity extends AppCompatActivity {
                 tvIN.setHint(CipherFactory.CAESAR.GetHint());
             }
         });
+
         bConvert.setOnClickListener(view -> {
-            tvOut.setText(CipherFactory.valueOf(
+            String changedText;
+            changedText = CipherFactory.valueOf(
                     spinner.getSelectedItem().toString().toUpperCase())
-                    .CipheringText(tvIN.getText().toString()));
+                    .CipheringText(tvIN.getText().toString(), checkBox.isChecked());
+
+            tvOut.setText(changedText);
         });
     }
 }
